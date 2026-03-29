@@ -31,14 +31,48 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link rel="stylesheet" href="w3.css">
       <link rel="stylesheet" href="w3-colors-flat.css">
-   </head> 
-
 
 <script>
 var docMod = document.lastModified; // loads last modified time stamp into docMod variable
 alert("This file last modified " + docMod); // generates alert box with time stamp. If annoying, comment out this entire line.
-console.log("This file last modified " + docMod); // generates message in javaScript console (found in developers tools) with time stamp. 
-</script>
+console.log("This file last modified " + docMod); // generates message in javaScript console (found in developers tools) with time stamp.
+// Get the canvas element and its drawing context
+// The context (ctx) is to actually paint on the canvas.	
+var canvas = document.getElementById("myAppCanvas");
+var ctx = canvas.getContext("2d");
+// FUNCTION: drawRectangle
+// Sets the color to blue and draws a rectangle in the top-left area.
+function drawRectangle() {
+        ctx.fillStyle = "#2196F3"; // A nice W3-Blue color
+        // fillRect(x, y, width, height)
+        ctx.fillRect(20, 20, 100, 60);
+    }
+//FUNCTION: drawMyName
+// Sets font properties and writes the user's name on the canvas
+function drawMyName() {
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        // fillText("text", x, y) - Y is the baseline of the text.
+        ctx.fillText("Yusroh", 20, 150);
+    }
+//FUNCTION: loadMyImage
+// Loads an external image object and draws it once the data is ready.
+function loadMyImage() {
+        var myImg = new Image();
+        // image URL
+        myImg.src = "https://img.freepik.com/free-vector/cute-rabbit-bite-carrot-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-7366.jpg?semt=ais_incoming&w=740&q=80"; 
+        
+        // We must wait for the image to finish loading before drawing it!
+        myImg.onload = function() {
+            // drawImage(img, x, y, width, height)
+            ctx.drawImage(myImg, 180, 180, 80, 80);
+        };
+    }
+function clearAll() {
+        // Clear from the very top-left (0,0) to the full width/height
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+</.script>
 
 
 
@@ -58,23 +92,27 @@ console.log("This file last modified " + docMod); // generates message in javaSc
             text-align: center;
             margin-top: 10px;
 }
-</style>
-
+   </style>
+ </head> 
 <body>
 <div id="header" class="w3-container w3-flat-carrot">
 	<h1>App6---HTML5-Canvas</h1>
 </div>
 	
 <div id="content" class="w3-container">
-	<p>Content goes here.</p>
+	<p>Use the buttons below to interact with the HTML5 Canvas element</p>
 		
-	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
- 	
-	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+<canvas id="myAppCanvas" width="300" height="300"></canvas> 	
+<div class="button-container">
+        <button onclick="drawRectangle();" class="w3-button w3-blue w3-round">Draw Rect</button>
+        <button onclick="drawMyName();" class="w3-button w3-green w3-round">Draw Name</button>
+        <button onclick="loadMyImage();" class="w3-button w3-purple w3-round">Load Image</button>
+        <button onclick="clearAll();" class="w3-button w3-grey w3-round">Reset</button>
+    </div>
+    <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
-	<p>DIY!</p>
+	<p>DIY Diagnostics • Freshman Research Initiative</p>
 </footer>
-
 </body>
 </html>
