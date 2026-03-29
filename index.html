@@ -46,19 +46,17 @@ console.log("This file last modified " + docMod); // generates message in javaSc
 .body {
      margin: 0em;
 }
-.page {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: -100vw;
-    overflow-y: auto;
-    z-index: 0;
-    background-color: hsl(0,0%,100%);
+#myAppCanvas {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #000000;
+            background-color: #FFFFFF;
+            max-width: 95%;
 }
-  .page:target {
-    left: 0vw;
-    z-index: 1;
+  .button-container {
+            text-align: center;
+            margin-top: 10px;
 }
 </style>
 
