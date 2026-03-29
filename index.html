@@ -17,102 +17,174 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
+This code demonstrates how to use an HTML5 canvas to draw shapes, text,
+and images using JavaScript.
+1. A canvas with a visible border
+2. A button to draw a rectangle
+3. A button to display a name
+4. A button to load an image
+5. A button to clear the canvas
+
  
 Known Issues:
-blah, blah, blah, blah
+None
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-   <head> 
-      <title>App6---HTML5-Canvas</title>  
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <link rel="stylesheet" href="w3.css">
-      <link rel="stylesheet" href="w3-colors-flat.css">
+   <head>
+    <title>App6---HTML5-Canvas</title>
 
-<script>
-var docMod = document.lastModified; // loads last modified time stamp into docMod variable
-alert("This file last modified " + docMod); // generates alert box with time stamp. If annoying, comment out this entire line.
-console.log("This file last modified " + docMod); // generates message in javaScript console (found in developers tools) with time stamp.
-// Get the canvas element and its drawing context
-// The context (ctx) is to actually paint on the canvas.	
-var canvas = document.getElementById("myAppCanvas");
-var ctx = canvas.getContext("2d");
-// FUNCTION: drawRectangle
-// Sets the color to blue and draws a rectangle in the top-left area.
-function drawRectangle() {
-        ctx.fillStyle = "#2196F3"; // A nice W3-Blue color
-        // fillRect(x, y, width, height)
-        ctx.fillRect(20, 20, 100, 60);
-    }
-//FUNCTION: drawMyName
-// Sets font properties and writes the user's name on the canvas
-function drawMyName() {
-        ctx.font = "20px Arial";
-        ctx.fillStyle = "black";
-        // fillText("text", x, y) - Y is the baseline of the text.
-        ctx.fillText("Yusroh", 20, 150);
-    }
-//FUNCTION: loadMyImage
-// Loads an external image object and draws it once the data is ready.
-function loadMyImage() {
-        var myImg = new Image();
-        // image URL
-        myImg.src = "https://img.freepik.com/free-vector/cute-rabbit-bite-carrot-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-7366.jpg?semt=ais_incoming&w=740&q=80"; 
-        
-        // We must wait for the image to finish loading before drawing it!
-        myImg.onload = function() {
-            // drawImage(img, x, y, width, height)
-            ctx.drawImage(myImg, 180, 180, 80, 80);
-        };
-    }
-function clearAll() {
-        // Clear from the very top-left (0,0) to the full width/height
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-</.script>
+    <!-- Mobile formatting -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
+    <!-- W3CSS styling -->
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="w3-colors-flat.css">
 
+    <style>
+        /* Remove default spacing */
+        body {
+            margin: 0em;
+        }
 
-<style>	
-.body {
-     margin: 0em;
-}
-#myAppCanvas {
+        /* Canvas styling */
+        #myAppCanvas {
             display: block;
             margin-left: auto;
             margin-right: auto;
-            border: 2px solid #000000;
-            background-color: #FFFFFF;
+            border: 2px solid black;
+            background-color: white;
             max-width: 95%;
-}
-  .button-container {
+        }
+
+        /* Center buttons under canvas */
+        .button-container {
             text-align: center;
             margin-top: 10px;
-}
-   </style>
- </head> 
-<body>
-<div id="header" class="w3-container w3-flat-carrot">
-	<h1>App6---HTML5-Canvas</h1>
-</div>
-	
-<div id="content" class="w3-container">
-	<p>Use the buttons below to interact with the HTML5 Canvas element</p>
-		
-<canvas id="myAppCanvas" width="300" height="300"></canvas> 	
-<div class="button-container">
-        <button onclick="drawRectangle();" class="w3-button w3-blue w3-round">Draw Rect</button>
-        <button onclick="drawMyName();" class="w3-button w3-green w3-round">Draw Name</button>
-        <button onclick="loadMyImage();" class="w3-button w3-purple w3-round">Load Image</button>
-        <button onclick="clearAll();" class="w3-button w3-grey w3-round">Reset</button>
-    </div>
-    <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+        }
+    </style>
 
-<footer class="w3-bottom w3-container w3-flat-carrot">
-	<p>DIY Diagnostics • Freshman Research Initiative</p>
-</footer>
+    <script>
+        /*
+        ============================================================================
+        This section runs when the page fully loads.
+        We MUST wait for the DOM to load before accessing the canvas.
+        ============================================================================
+        */
+        window.onload = function () {
+
+            // Display last modified timestamp (helps with debugging GitHub delays)
+            var docMod = document.lastModified;
+            alert("This file last modified " + docMod);
+            console.log("This file last modified " + docMod);
+
+            // Get the canvas element from HTML
+            canvas = document.getElementById("myAppCanvas");
+
+            // Get drawing context (this is what actually draws on canvas)
+            ctx = canvas.getContext("2d");
+        };
+
+        /*
+        ============================================================================
+        FUNCTION: drawRectangle
+        PURPOSE: Draws a blue rectangle on the canvas
+        ============================================================================
+        */
+        function drawRectangle() {
+
+            // Set fill color
+            ctx.fillStyle = "#2196F3";
+
+            // Draw rectangle (x, y, width, height)
+            ctx.fillRect(20, 20, 120, 70);
+        }
+
+        /*
+        ============================================================================
+        FUNCTION: drawMyName
+        PURPOSE: Displays user's name on the canvas
+        ============================================================================
+        */
+        function drawMyName() {
+
+            // Set font style and size
+            ctx.font = "20px Arial";
+
+            // Set text color
+            ctx.fillStyle = "black";
+
+            // Draw text (text, x position, y position)
+            ctx.fillText("Yusroh", 20, 150);
+        }
+
+        /*
+        ============================================================================
+        FUNCTION: loadMyImage
+        PURPOSE: Loads and draws an image onto the canvas
+        IMPORTANT: Image must fully load before drawing
+        ============================================================================
+        */
+        function loadMyImage() {
+
+            // Create new image object
+            var myImg = new Image();
+
+            // Set image source URL
+            myImg.src = "https://img.freepik.com/free-vector/cute-rabbit-bite-carrot-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-7366.jpg";
+
+            // Wait until image loads before drawing
+            myImg.onload = function () {
+
+                // Draw image (image, x, y, width, height)
+                ctx.drawImage(myImg, 150, 150, 100, 100);
+            };
+        }
+
+        /*
+        ============================================================================
+        FUNCTION: clearAll
+        PURPOSE: Clears entire canvas (reset button)
+        ============================================================================
+        */
+        function clearAll() {
+
+            // Clear entire canvas area
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Header section -->
+    <div class="w3-container w3-flat-carrot">
+        <h1>App6---HTML5-Canvas</h1>
+    </div>
+
+    <!-- Main content -->
+    <div class="w3-container">
+        <p>Use the buttons below to interact with the canvas.</p>
+
+        <!-- Canvas element -->
+        <canvas id="myAppCanvas" width="300" height="300"></canvas>
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <button onclick="drawRectangle()" class="w3-button w3-blue w3-round">Draw Rectangle</button>
+            <button onclick="drawMyName()" class="w3-button w3-green w3-round">Draw Name</button>
+            <button onclick="loadMyImage()" class="w3-button w3-purple w3-round">Load Image</button>
+            <button onclick="clearAll()" class="w3-button w3-grey w3-round">Reset</button>
+        </div>
+
+        <p><b>DISCLAIMER:</b> This app is for educational purposes only.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-bottom w3-container w3-flat-carrot">
+        <p>DIY Diagnostics • Freshman Research Initiative</p>
+    </footer>
 </body>
 </html>
