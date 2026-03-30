@@ -19,6 +19,7 @@ triedel@utexas.edu
 Brief Description of Goal of Code:
 This code demonstrates how to use an HTML5 canvas to draw shapes, text,
 and images using JavaScript.
+THE APP DISPLAYS
 1. A canvas with a visible border
 2. A button to draw a rectangle
 3. A button to display a name
@@ -35,7 +36,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
    <head>
     <title>App6---HTML5-Canvas</title>
 
-    <!-- Mobile formatting -->
+    <!--For  proper scaling on mobile devices. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -49,7 +50,11 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
             margin: 0em;
         }
 
-        /* Canvas styling */
+        /* Canvas styling 
+		- Center it horizontally
+        - Give it a border so users can see its boundaries
+        - Set background to white for visibility
+        - Limit width so it fits on mobile screens*/
         #myAppCanvas {
             display: block;
             margin-left: auto;
@@ -59,7 +64,8 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
             max-width: 95%;
         }
 
-        /* Center buttons under canvas */
+        /*         Centers all buttons under the canvas and adds spacing
+ */
         .button-container {
             text-align: center;
             margin-top: 10px;
@@ -75,8 +81,8 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         */
         window.onload = function () {
 
-            // Display last modified timestamp (helps with debugging GitHub delays)
-            var docMod = document.lastModified;
+// Final Check: Alert the user when the file was last modified
+			var docMod = document.lastModified;
             alert("This file last modified " + docMod);
             console.log("This file last modified " + docMod);
 
@@ -95,26 +101,27 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         */
         function drawRectangle() {
 
-            // Set fill color
-            ctx.fillStyle = "#2196F3";
+            // Set "fillStyle" which is the color used to fill shapes.
+            ctx.fillStyle = "#2196F3"; // blue
 
             // Draw rectangle (x, y, width, height)
             ctx.fillRect(20, 20, 120, 70);
+			console.log("Rectangle drawn at coordinates 20, 20.");
         }
 
         /*
         ============================================================================
         FUNCTION: drawMyName
-        PURPOSE: Displays user's name on the canvas
+        PURPOSE: Displays user's name on the canvas. Shows custom text onto the canvas area.
         ============================================================================
         */
         function drawMyName() {
 
             // Set font style and size
-            ctx.font = "20px Arial";
+            ctx.font = "20px Times New Roman";
 
             // Set text color
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "red";
 
             // Draw text (text, x position, y position)
             ctx.fillText("Yusroh", 20, 150);
@@ -135,25 +142,30 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
             // Set image source URL
             myImg.src = "https://img.freepik.com/free-vector/cute-rabbit-bite-carrot-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-7366.jpg";
 
-            // Wait until image loads before drawing
+            // WImages take time to download. We must wait for the 'onload' 
+    // event to trigger before we try to draw it, or the canvas will remain blank.
             myImg.onload = function () {
 
                 // Draw image (image, x, y, width, height)
                 ctx.drawImage(myImg, 150, 150, 100, 100);
+				console.log("Image successfully loaded and drawn.");
             };
         }
 
         /*
         ============================================================================
         FUNCTION: clearAll
-        PURPOSE: Clears entire canvas (reset button)
+        PURPOSE: This function resets the canvas by erasing every pixel.
         ============================================================================
         */
         function clearAll() {
 
-            // Clear entire canvas area
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // clearRect(x, y, width, height)
+    // We start at the top-left (0,0) and wipe the area matching the canvas size.
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    console.log("Canvas cleared.");
         }
+
     </script>
 </head>
 
